@@ -2,6 +2,11 @@ from rest_framework import generics
 from .models import Course, CourseInstance
 from .serializers import CourseSerializer, CourseInstanceSerializer
 
+
+def home(request):
+    return HttpResponse("Welcome to the Course Management API!")
+
+
 class CourseListCreate(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
