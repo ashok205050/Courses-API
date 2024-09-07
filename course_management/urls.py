@@ -16,8 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
+from django.http import HttpResponse 
+
+def home(request):
+    return HttpResponse('<h1>Welcome to the Course Management API!</h1>'
+        '<p>Visit the admin interface here: <br>'
+        '<a href="/admin/">http://127.0.0.1:8000/admin/</a></p>'
+        '<br>'
+        'http://127.0.0.1:8000/api/courses/'
+        )
 
 urlpatterns = [
+    path('', home), 
+    path('', RedirectView.as_view(url='/api/')),
     path('admin/', admin.site.urls),
     path('api/', include('courses.urls')),  
+    
+
 ]
